@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>VACAY — Меню</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="header">
+      <a class="logo" href="#">
+        <img
+            class="logo-photo"
+            src="assets/logo/dark grey.svg"
+            alt="logo"
+          />
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <nav class="categories" aria-label="Категории меню" id="categories">
+      <button class="category is-active" data-section="breakfast">Завтраки</button>
+      <button class="category" data-section="snacks">Закуски</button>
+      <button class="category" data-section="salads">Салаты</button>
+      <button class="category" data-section="pasta">Паста</button>
+      <button class="category" data-section="hot">Горячее</button>
+      <button class="category" data-section="ravioli">Равиоли</button>
+      <button class="category" data-section="kids">Детям</button>
+    </nav>
+
+    <main class="menu-content" id="menu-content">
+      
+      
+    </main>
+
+    <footer class="footer">
+
+    </footer>
+  </div>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <button class="mobile-menu-close" type="button" aria-label="Закрыть меню">×</button>
+    <a href="#menu">Меню</a>
+    <a href="#about">О нас</a>
+    <a href="#contacts">Контакты</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
