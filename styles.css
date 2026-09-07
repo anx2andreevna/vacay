@@ -48,11 +48,18 @@ button { font: inherit; }
   width: 100%;
   min-height: 100vh;
   margin: 0;
+  padding-top: 111px;
   background: var(--white);
   overflow: hidden;
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
   width: 100%;
   height: 75px;
 
@@ -61,6 +68,7 @@ button { font: inherit; }
   justify-content: space-between;
 
   padding: 0 18px 0 20px;
+  background: #fff;
 }
 
 .logo {
@@ -102,10 +110,16 @@ button { font: inherit; }
 }
 
 .categories {
-  width: calc(100% - 40px);
+  position: fixed;
+  top: 75px;
+  left: 20px;
+  right: 20px;
+  z-index: 999;
+
+  width: auto;
   height: 36px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0;
+
   background: #fff;
   display: flex;
   align-items: flex-start;
@@ -124,12 +138,29 @@ button { font: inherit; }
   border: 0;
   background: none;
   color: #000;
-  font-size: 10.8px;
+  font-size: 12px;
   line-height: 16.2px;
   cursor: pointer;
   scroll-snap-align: start;
 }
-.category.is-active { color: var(--green); }
+.category.is-active { 
+  color: var(--green); 
+  font-size: bold;
+}
+
+.menu-time {
+  width: calc(100% - 40px);
+  margin: 7px 20px 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 8px;
+  line-height: 10px;
+  font-weight: 400;
+
+  color: #000;
+  background: #fff;
+}
+
 
 .menu-content {
   width: 100%;
@@ -339,7 +370,7 @@ margin-bottom: 7px;
 .mobile-menu {
   position: fixed;
   inset: 0;
-  z-index: 20;
+  z-index: 4000;
   padding: 100px 30px 30px;
   background: #000;
   color: #fff;
@@ -369,3 +400,90 @@ margin-bottom: 7px;
   cursor: pointer;
 }
 
+.dish-photo {
+  cursor: zoom-in;
+}
+
+.image-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 20px;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.image-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.image-modal-photo {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 85vh;
+
+  object-fit: contain;
+
+  transform: scale(0.96);
+  transition: transform 0.2s ease;
+}
+
+.image-modal.is-open .image-modal-photo {
+  transform: scale(1);
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+  color: #fff;
+
+  font-family: Arial, sans-serif;
+  font-size: 36px;
+  line-height: 40px;
+
+  cursor: pointer;
+}
+
+.section-error { margin: 0; font-size: 12px; }
+
+.allergy-note {
+  margin: 30px 0 20px;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+
+  color: #000;
+}
