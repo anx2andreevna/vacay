@@ -145,7 +145,7 @@ button { font: inherit; }
 }
 .category.is-active { 
   color: var(--green); 
-  font-size: bold;
+  font-weight: bold;
 }
 
 .menu-time {
