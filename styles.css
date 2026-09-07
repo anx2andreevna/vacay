@@ -194,24 +194,28 @@ flex-direction: column;
 .dish-photo-wrap .dish-photo {
   position: absolute;
 
-  width: 161.26%;
-  height: 166.55%;
+  width: 140%;
+  height: 143%;
 
   max-width: none;
 
-  left: -30.64%;
-  top: -32.86%;
+  left: -20%;
+  top: -21.5%;
 
   object-fit: fill;
 }
 
 .dish-card:first-child .dish-photo-wrap .dish-photo {
   position: absolute;
-  width: 161.26%;
-  height: 166.55%;
+
+  width: 140%;
+  height: 143%;
+
   max-width: none;
-  left: -30.64%;
-  top: -32.86%;
+
+  left: -20%;
+  top: -21.5%;
+
   object-fit: fill;
 }
 
@@ -389,17 +393,6 @@ margin-bottom: 7px;
   font-size: 22px;
 }
 
-.mobile-menu-close {
-  position: absolute;
-  right: 22px;
-  top: 20px;
-  border: 0;
-  background: none;
-  color: #fff;
-  font-size: 34px;
-  cursor: pointer;
-}
-
 .dish-photo {
   cursor: zoom-in;
 }
@@ -432,47 +425,57 @@ margin-bottom: 7px;
   pointer-events: auto;
 }
 
-.image-modal-photo {
+.image-modal-photo-wrap {
   position: relative;
-  z-index: 1;
 
-  display: block;
+  width: min(90vw, 500px);
 
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 85vh;
+  aspect-ratio: 190 / 147;
 
-  object-fit: contain;
+  overflow: hidden;
+}
 
-  transform: scale(0.96);
-  transition: transform 0.2s ease;
+.image-modal-photo {
+  position: absolute;
+  max-width: none;
+
+  object-fit: fill;
+  width: 140%;
+  height: 143%;
+
+  left: -20%;
+  top: -21.5%;
 }
 
 .image-modal.is-open .image-modal-photo {
   transform: scale(1);
 }
 
+.mobile-menu-close,
 .image-modal-close {
   position: absolute;
+
+  right: 22px;
   top: 20px;
-  right: 20px;
-  z-index: 2;
 
-  width: 40px;
-  height: 40px;
-
-  padding: 0;
   border: 0;
+  padding: 0;
 
-  background: transparent;
+  background: none;
+
   color: #fff;
 
-  font-family: Arial, sans-serif;
-  font-size: 36px;
-  line-height: 40px;
+  font-size: 34px;
+  line-height: 1;
 
   cursor: pointer;
+}
+
+.image-modal-close {
+  z-index: 2;
+  right: 12px;
+  top: 160px;
+
 }
 
 .section-error { margin: 0; font-size: 12px; }
