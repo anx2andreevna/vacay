@@ -23,7 +23,7 @@ body {
   overflow-x: hidden;
 }
 :root {
-  --page-width: 100%;
+  --page-width: 375px;
   --black: #000;
   --white: #fff;
   --green: #626c3d;
@@ -32,11 +32,11 @@ body {
 
 * { box-sizing: border-box; }
 
-html { background: #fff; }
+html { background: #ececec; }
 
 body {
   margin: 0;
-  background: #fff;
+  background: #ececec;
   color: var(--black);
   font-family: "Montserrat", Arial, sans-serif;
 }
@@ -45,9 +45,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 button { font: inherit; }
 
 .site-shell {
-  width: 100%;
+  width: min(100%, var(--page-width));
   min-height: 100vh;
-  margin: 0;
+  margin: 0 auto;
   background: var(--white);
   overflow: hidden;
 }
@@ -102,11 +102,9 @@ button { font: inherit; }
 }
 
 .categories {
-  width: calc(100% - 40px);
   height: 36px;
   margin-left: 20px;
   margin-right: 20px;
-  background: #fff;
   display: flex;
   align-items: flex-start;
   gap: 29px;
@@ -132,9 +130,7 @@ button { font: inherit; }
 .category.is-active { color: var(--green); }
 
 .menu-content {
-  width: 100%;
   padding: 7px 20px 50px 20px;
-  background: #fff;
 }
 
 .dishes-list {
@@ -369,3 +365,6 @@ margin-bottom: 7px;
   cursor: pointer;
 }
 
+@media (min-width: 376px) {
+  .site-shell { box-shadow: 0 0 30px rgba(0,0,0,.08); }
+}
