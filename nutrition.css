@@ -1,0 +1,133 @@
+/* Страница КБЖУ — отдельные стили поверх основного styles.css */
+
+.nutrition-page {
+  padding-top: 75px;
+}
+
+.nutrition-page .header {
+  overflow: hidden;
+}
+
+.nutrition-page .logo-photo {
+  pointer-events: none;
+}
+
+.nutrition-content {
+  width: 100%;
+  padding: 34px 20px 60px;
+  background: #fff;
+}
+
+.nutrition-page__title {
+  margin: 0 0 14px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.nutrition-table {
+  width: 100%;
+  color: #000;
+}
+
+.nutrition-table__header,
+.nutrition-table__row {
+  display: grid;
+  grid-template-columns: 43.3% repeat(5, 11.34%);
+  width: 100%;
+}
+
+.nutrition-table__header {
+  min-height: 12px;
+  align-items: center;
+  background: rgb(148 158 107 / 55%);
+  border-bottom: 1px solid #000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 6.3px;
+  line-height: 7px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.nutrition-table__header > div,
+.nutrition-table__row > div {
+  min-width: 0;
+  height: 100%;
+  padding: 3px 2px;
+  border-right: 1px solid rgba(0, 0, 0, 0.32);
+}
+
+.nutrition-table__header > div:last-child,
+.nutrition-table__row > div:last-child {
+  border-right: 0;
+}
+
+.nutrition-section {
+  margin: 0;
+}
+
+.nutrition-section__title {
+  margin: 0;
+  padding: 7px 0 4px;
+  border-bottom: 1px solid #000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 6.3px;
+  line-height: 7px;
+  font-weight: 700;
+  color: #000;
+}
+
+.nutrition-section__title:empty {
+  display: none;
+}
+
+.nutrition-table__body {
+  width: 100%;
+}
+
+.nutrition-table__row {
+  min-height: 14px;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+  font-family: "Montserrat", sans-serif;
+  font-size: 6.3px;
+  line-height: 7.2px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.nutrition-table__row > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nutrition-table__row .nutrition-table__name {
+  justify-content: flex-start;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.mobile-menu a[aria-current="page"] {
+  opacity: 0.55;
+}
+
+@media (max-width: 359px) {
+  .nutrition-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .nutrition-table__header,
+  .nutrition-table__row {
+    grid-template-columns: 41% repeat(5, 11.8%);
+  }
+
+  .nutrition-table__row,
+  .nutrition-table__header,
+  .nutrition-section__title {
+    font-size: 6px;
+  }
+}

@@ -1,4 +1,4 @@
-const categoryButtons = document.querySelectorAll("[data-section]");
+const categoryButtons = document.querySelectorAll(".category[data-section]");
 
 const burger = document.querySelector(".burger");
 const mobileMenu = document.querySelector(".mobile-menu");
@@ -11,6 +11,13 @@ const imageModal = document.querySelector("#image-modal");
 const imageModalPhoto = document.querySelector("#image-modal-photo");
 const imageModalClose = document.querySelector("#image-modal-close");
 
+let currentSection = "breakfast";
+let requestNumber = 0;
+
+
+/* =========================
+   МОБИЛЬНОЕ МЕНЮ
+========================= */
 
 function setMenu(open) {
   if (!mobileMenu || !burger) return;
@@ -46,12 +53,44 @@ if (mobileMenuClose) {
 }
 
 
+/* =========================
+   АКТИВНАЯ КАТЕГОРИЯ
+========================= */
+
+function setActiveCategory(section) {
+  categoryButtons.forEach(function (button) {
+    if (button.dataset.section === section) {
+      button.classList.add("is-active");
+    } else {
+      button.classList.remove("is-active");
+    }
+  });
+}
+
+
+/* =========================
+   ЗАГРУЗКА РАЗДЕЛА
+========================= */
+
 async function loadMenuSection(section) {
   if (!menuContent) return;
 
+  currentSection = section;
+
+  const thisRequest = ++requestNumber;
+
+  setActiveCategory(section);
+
+  if (menuTime) {
+    menuTime.textContent =
+      section === "breakfast"
+        ? "до 14:00"
+        : "с 14:00";
+  }
+
   try {
     const response = await fetch(
-      "sections/" + section + ".html",
+      `./sections/${section}.html?v=${Date.now()}`,
       {
         cache: "no-store"
       }
@@ -59,32 +98,34 @@ async function loadMenuSection(section) {
 
     if (!response.ok) {
       throw new Error(
-        "Не удалось загрузить раздел: " + section
+        `Ошибка загрузки ${section}: ${response.status}`
       );
     }
 
     const html = await response.text();
 
+    /*
+      Если пользователь успел нажать другую вкладку,
+      старый запрос ничего не меняет.
+    */
+    if (thisRequest !== requestNumber) {
+      return;
+    }
+
     menuContent.innerHTML = html;
 
     menuContent.insertAdjacentHTML(
-        "beforeend",
-        `
-            <p class="allergy-note">
-            *просьба предупреждать об имеющихся у вас аллергии на определенные продукты
-            </p>
-        `
-        );
+      "beforeend",
+      `
+        <p class="allergy-note">
+          *просьба предупреждать об имеющихся у вас аллергии на определенные продукты
+        </p>
+      `
+    );
 
-    if (menuTime) {
-      menuTime.textContent =
-        section === "breakfast"
-          ? "до 14:00"
-          : "с 14:00";
-    }
-
-    // При переключении раздела
-    // возвращаем страницу в самый верх
+    /*
+      Каждый раздел открывается сверху.
+    */
     window.scrollTo({
       top: 0,
       left: 0,
@@ -92,6 +133,10 @@ async function loadMenuSection(section) {
     });
 
   } catch (error) {
+    if (thisRequest !== requestNumber) {
+      return;
+    }
+
     console.error(error);
 
     menuContent.innerHTML = `
@@ -103,28 +148,26 @@ async function loadMenuSection(section) {
 }
 
 
+/* =========================
+   ПЕРЕКЛЮЧЕНИЕ КАТЕГОРИЙ
+========================= */
+
 categoryButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
+  button.addEventListener("click", function (event) {
+    event.preventDefault();
 
-    const section =
-      button.getAttribute("data-section");
+    const section = button.dataset.section;
 
-    categoryButtons.forEach(function (item) {
-      item.classList.remove("is-active");
-    });
-
-    button.classList.add("is-active");
-
-    button.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest"
-    });
+    if (!section) return;
 
     loadMenuSection(section);
   });
 });
 
+
+/* =========================
+   МОДАЛЬНАЯ КАРТИНКА
+========================= */
 
 function openImageModal(image) {
   if (!imageModal || !imageModalPhoto) return;
@@ -167,7 +210,6 @@ if (menuContent) {
   menuContent.addEventListener(
     "click",
     function (event) {
-
       const image =
         event.target.closest(".dish-photo");
 
@@ -183,7 +225,6 @@ if (imageModalClose) {
   imageModalClose.addEventListener(
     "click",
     function (event) {
-
       event.stopPropagation();
 
       closeImageModal();
@@ -196,7 +237,6 @@ if (imageModal) {
   imageModal.addEventListener(
     "click",
     function (event) {
-
       if (event.target === imageModal) {
         closeImageModal();
       }
@@ -208,7 +248,6 @@ if (imageModal) {
 document.addEventListener(
   "keydown",
   function (event) {
-
     if (
       event.key === "Escape" &&
       imageModal &&
@@ -220,6 +259,8 @@ document.addEventListener(
 );
 
 
-// При первом открытии сайта
-// загружаем завтраки
+/* =========================
+   ПЕРВАЯ ЗАГРУЗКА
+========================= */
+
 loadMenuSection("breakfast");

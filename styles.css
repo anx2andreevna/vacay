@@ -69,6 +69,8 @@ button { font: inherit; }
 
   padding: 0 18px 0 20px;
   background: #fff;
+
+  overflow: hidden;
 }
 
 .logo {
@@ -82,6 +84,8 @@ button { font: inherit; }
   width: 120px;
   height: auto;
   margin-left: -23px;
+
+  pointer-events: none;
 }
 
 .burger {
@@ -389,8 +393,8 @@ margin-bottom: 7px;
 .mobile-menu a {
   color: #fff;
   text-decoration: none;
-  font-family: "Unbounded", sans-serif;
-  font-size: 22px;
+  font-size: 15px;
+  line-height: 0px;
 }
 
 .dish-photo {
