@@ -1,4 +1,6 @@
-const categoryButtons = document.querySelectorAll(".category[data-section]");
+const categoryButtons = document.querySelectorAll(
+  ".category[data-section]"
+);
 
 const burger = document.querySelector(".burger");
 const mobileMenu = document.querySelector(".mobile-menu");
@@ -16,13 +18,16 @@ let requestNumber = 0;
 
 
 /* =========================
-   МОБИЛЬНОЕ МЕНЮ
+   БУРГЕР-МЕНЮ
 ========================= */
 
 function setMenu(open) {
   if (!mobileMenu || !burger) return;
 
-  mobileMenu.classList.toggle("is-open", open);
+  mobileMenu.classList.toggle(
+    "is-open",
+    open
+  );
 
   mobileMenu.setAttribute(
     "aria-hidden",
@@ -40,16 +45,22 @@ function setMenu(open) {
 
 
 if (burger) {
-  burger.addEventListener("click", function () {
-    setMenu(true);
-  });
+  burger.addEventListener(
+    "click",
+    function () {
+      setMenu(true);
+    }
+  );
 }
 
 
 if (mobileMenuClose) {
-  mobileMenuClose.addEventListener("click", function () {
-    setMenu(false);
-  });
+  mobileMenuClose.addEventListener(
+    "click",
+    function () {
+      setMenu(false);
+    }
+  );
 }
 
 
@@ -58,18 +69,28 @@ if (mobileMenuClose) {
 ========================= */
 
 function setActiveCategory(section) {
-  categoryButtons.forEach(function (button) {
-    if (button.dataset.section === section) {
-      button.classList.add("is-active");
-    } else {
-      button.classList.remove("is-active");
+  categoryButtons.forEach(
+    function (button) {
+
+      if (
+        button.dataset.section === section
+      ) {
+        button.classList.add(
+          "is-active"
+        );
+      } else {
+        button.classList.remove(
+          "is-active"
+        );
+      }
+
     }
-  });
+  );
 }
 
 
 /* =========================
-   ЗАГРУЗКА РАЗДЕЛА
+   ЗАГРУЗКА РАЗДЕЛОВ
 ========================= */
 
 async function loadMenuSection(section) {
@@ -77,9 +98,11 @@ async function loadMenuSection(section) {
 
   currentSection = section;
 
-  const thisRequest = ++requestNumber;
+  const thisRequest =
+    ++requestNumber;
 
   setActiveCategory(section);
+
 
   if (menuTime) {
     menuTime.textContent =
@@ -88,7 +111,9 @@ async function loadMenuSection(section) {
         : "с 14:00";
   }
 
+
   try {
+
     const response = await fetch(
       `./sections/${section}.html?v=${Date.now()}`,
       {
@@ -96,23 +121,34 @@ async function loadMenuSection(section) {
       }
     );
 
+
     if (!response.ok) {
       throw new Error(
         `Ошибка загрузки ${section}: ${response.status}`
       );
     }
 
-    const html = await response.text();
+
+    const html =
+      await response.text();
+
 
     /*
-      Если пользователь успел нажать другую вкладку,
-      старый запрос ничего не меняет.
+      Если пользователь уже нажал
+      другую категорию,
+      старый запрос ничего не делает
     */
-    if (thisRequest !== requestNumber) {
+
+    if (
+      thisRequest !== requestNumber
+    ) {
       return;
     }
 
-    menuContent.innerHTML = html;
+
+    menuContent.innerHTML =
+      html;
+
 
     menuContent.insertAdjacentHTML(
       "beforeend",
@@ -123,27 +159,32 @@ async function loadMenuSection(section) {
       `
     );
 
-    /*
-      Каждый раздел открывается сверху.
-    */
+
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "auto"
     });
 
+
   } catch (error) {
-    if (thisRequest !== requestNumber) {
+
+    if (
+      thisRequest !== requestNumber
+    ) {
       return;
     }
 
+
     console.error(error);
+
 
     menuContent.innerHTML = `
       <p class="section-error">
         Раздел временно недоступен
       </p>
     `;
+
   }
 }
 
@@ -152,17 +193,30 @@ async function loadMenuSection(section) {
    ПЕРЕКЛЮЧЕНИЕ КАТЕГОРИЙ
 ========================= */
 
-categoryButtons.forEach(function (button) {
-  button.addEventListener("click", function (event) {
-    event.preventDefault();
+categoryButtons.forEach(
+  function (button) {
 
-    const section = button.dataset.section;
+    button.addEventListener(
+      "click",
+      function (event) {
 
-    if (!section) return;
+        event.preventDefault();
 
-    loadMenuSection(section);
-  });
-});
+
+        const section =
+          button.dataset.section;
+
+
+        if (!section) return;
+
+
+        loadMenuSection(section);
+
+      }
+    );
+
+  }
+);
 
 
 /* =========================
@@ -170,91 +224,164 @@ categoryButtons.forEach(function (button) {
 ========================= */
 
 function openImageModal(image) {
-  if (!imageModal || !imageModalPhoto) return;
+  if (
+    !imageModal ||
+    !imageModalPhoto
+  ) {
+    return;
+  }
+
 
   imageModalPhoto.src =
-    image.currentSrc || image.src;
+    image.currentSrc ||
+    image.src;
+
 
   imageModalPhoto.alt =
     image.alt || "";
 
-  imageModal.classList.add("is-open");
+
+  imageModal.classList.add(
+    "is-open"
+  );
+
 
   imageModal.setAttribute(
     "aria-hidden",
     "false"
   );
 
-  document.body.style.overflow = "hidden";
+
+  document.body.style.overflow =
+    "hidden";
 }
 
 
 function closeImageModal() {
-  if (!imageModal || !imageModalPhoto) return;
+  if (
+    !imageModal ||
+    !imageModalPhoto
+  ) {
+    return;
+  }
 
-  imageModal.classList.remove("is-open");
+
+  imageModal.classList.remove(
+    "is-open"
+  );
+
 
   imageModal.setAttribute(
     "aria-hidden",
     "true"
   );
 
+
   imageModalPhoto.src = "";
   imageModalPhoto.alt = "";
 
-  document.body.style.overflow = "";
+
+  document.body.style.overflow =
+    "";
 }
 
 
+/* Клик по фотографии */
+
 if (menuContent) {
+
   menuContent.addEventListener(
     "click",
     function (event) {
+
       const image =
-        event.target.closest(".dish-photo");
+        event.target.closest(
+          ".dish-photo"
+        );
+
 
       if (!image) return;
 
+
       openImageModal(image);
+
     }
   );
+
 }
 
 
+/* Закрытие по крестику */
+
 if (imageModalClose) {
+
   imageModalClose.addEventListener(
     "click",
     function (event) {
+
       event.stopPropagation();
 
       closeImageModal();
+
     }
   );
+
 }
 
 
+/* Закрытие по фону */
+
 if (imageModal) {
+
   imageModal.addEventListener(
     "click",
     function (event) {
-      if (event.target === imageModal) {
+
+      if (
+        event.target === imageModal
+      ) {
         closeImageModal();
       }
+
     }
   );
+
 }
 
+
+/* =========================
+   ESC
+========================= */
 
 document.addEventListener(
   "keydown",
   function (event) {
+
     if (
-      event.key === "Escape" &&
-      imageModal &&
-      imageModal.classList.contains("is-open")
+      event.key === "Escape"
     ) {
-      closeImageModal();
+
+      if (
+        imageModal &&
+        imageModal.classList.contains(
+          "is-open"
+        )
+      ) {
+        closeImageModal();
+      }
+
+
+      if (
+        mobileMenu &&
+        mobileMenu.classList.contains(
+          "is-open"
+        )
+      ) {
+        setMenu(false);
+      }
+
     }
+
   }
 );
 
@@ -263,4 +390,6 @@ document.addEventListener(
    ПЕРВАЯ ЗАГРУЗКА
 ========================= */
 
-loadMenuSection("breakfast");
+loadMenuSection(
+  "breakfast"
+);

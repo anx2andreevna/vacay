@@ -9,15 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="nutrition.css" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
 
 <body>
   <div class="site-shell nutrition-page">
     <header class="header">
       <a class="logo" href="index.html" aria-label="VACAY — меню">
-        <img class="logo-photo" src="assets/logo/dark grey.svg" alt="VACAY" />
+        <img class="logo-photo" src="../assets/logo/dark grey.svg" alt="VACAY" />
       </a>
 
       <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
@@ -427,13 +426,32 @@
   </div>
 
   <div class="mobile-menu" aria-hidden="true">
-    <button class="mobile-menu-close" type="button" aria-label="Закрыть меню">×</button>
-    <a href="index.html">Меню</a>
-    <a href="nutrition.html" aria-current="page">Калорийность</a>
-    <a href="index.html#about">О нас</a>
-    <a href="index.html#contacts">Контакты</a>
-  </div>
 
-  <script src="nutrition.js"></script>
+  <button
+    class="mobile-menu-close"
+    type="button"
+    aria-label="Закрыть меню"
+  >
+    ×
+  </button>
+
+  <a href="../index.html">
+    Меню
+  </a>
+
+  <a href="./nutrition.html">
+    Калорийность
+  </a>
+
+  <a href="./about.html">
+    О нас
+  </a>
+
+  <a href="./contacts.html">
+    Контакты
+  </a>
+</div>
+
+  <script src="../assets/js/script.js?v=1"></script>
 </body>
 </html>
