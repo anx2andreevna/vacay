@@ -1,3 +1,10 @@
+:root {
+  --black: #000;
+  --white: #fff;
+  --green: #626c3d;
+  --red: #990000;
+}
+
 *,
 *::before,
 *::after {
@@ -7,7 +14,7 @@
 html {
   width: 100%;
   min-height: 100%;
-  background: #fff;
+  background: var(--white);
 }
 
 body {
@@ -18,46 +25,42 @@ body {
   margin: 0;
   padding: 0;
 
-  background: #fff;
+  background: var(--white);
+  color: var(--black);
+
+  font-family: "Montserrat", Arial, sans-serif;
 
   overflow-x: hidden;
 }
-:root {
-  --page-width: 100%;
-  --black: #000;
-  --white: #fff;
-  --green: #626c3d;
-  --red: #990000;
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-* { box-sizing: border-box; }
-
-html { background: #fff; }
-
-body {
-  margin: 0;
-  background: #fff;
-  color: var(--black);
-  font-family: "Montserrat", Arial, sans-serif;
+button {
+  font: inherit;
 }
-
-button, a { -webkit-tap-highlight-color: transparent; }
-button { font: inherit; }
 
 .site-shell {
   width: 100%;
   min-height: 100vh;
+
   margin: 0;
   padding-top: 111px;
+
   background: var(--white);
+
   overflow: hidden;
 }
 
 .header {
   position: fixed;
+
   top: 0;
   left: 0;
   right: 0;
+
   z-index: 1000;
 
   width: 100%;
@@ -68,7 +71,8 @@ button { font: inherit; }
   justify-content: space-between;
 
   padding: 0 18px 0 20px;
-  background: #fff;
+
+  background: var(--white);
 
   overflow: hidden;
 }
@@ -76,84 +80,114 @@ button { font: inherit; }
 .logo {
   display: flex;
   align-items: center;
+
   flex-shrink: 0;
 }
 
 .logo-photo {
   display: block;
+
   width: 120px;
   height: auto;
+
   margin-left: -23px;
 
   pointer-events: none;
 }
 
 .burger {
-  flex-shrink: 0;
-}
-
-.burger {
   width: 30px;
   height: 20px;
+
   margin-top: 14px;
   padding: 2px 3px;
+
   border: 0;
+
   background: transparent;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  flex-shrink: 0;
+
   cursor: pointer;
 }
 
 .burger span {
   display: block;
+
   width: 23px;
   height: 2.5px;
+
   border-radius: 50px;
-  background: #000;
+
+  background: var(--black);
 }
 
 .categories {
   position: fixed;
+
   top: 75px;
   left: 20px;
   right: 20px;
+
   z-index: 999;
 
   width: auto;
   height: 36px;
+
   margin: 0;
 
-  background: #fff;
   display: flex;
   align-items: flex-start;
+
   gap: 29px;
+
+  background: var(--white);
+
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none;
+
   white-space: nowrap;
+
+  scrollbar-width: none;
+
   scroll-snap-type: x proximity;
 }
-.categories::-webkit-scrollbar { display: none; }
+
+.categories::-webkit-scrollbar {
+  display: none;
+}
 
 .category {
   flex: 0 0 auto;
+
   padding: 7px 0 8px;
+
   border: 0;
+
   background: none;
-  color: #000;
+
+  color: var(--black);
+
   font-size: 12px;
   line-height: 16.2px;
+
   cursor: pointer;
+
   scroll-snap-align: start;
 }
-.category.is-active { 
-  color: var(--green); 
-  font-weight: bold;
+
+.category.is-active {
+  color: var(--green);
+  font-weight: 700;
 }
 
 .menu-time {
   width: calc(100% - 40px);
+
   margin: 7px 20px 0;
 
   font-family: "Montserrat", sans-serif;
@@ -161,29 +195,34 @@ button { font: inherit; }
   line-height: 10px;
   font-weight: 400;
 
-  color: #000;
-  background: #fff;
+  color: var(--black);
+  background: var(--white);
 }
-
 
 .menu-content {
   width: 100%;
-  padding: 7px 20px 50px 20px;
-  background: #fff;
+
+  padding: 7px 20px 50px;
+
+  background: var(--white);
 }
 
 .dishes-list {
-  gap: 30px;
-display: flex;
-flex-direction: column;
-}
-.dish-card {
-  display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 23px;
+  display: flex;
+  flex-direction: column;
 
+  gap: 30px;
+}
+
+.dish-card {
   width: 100%;
   min-height: 147px;
+
+  display: grid;
+
+  grid-template-columns: 190px 1fr;
+
+  gap: 23px;
 }
 
 .dish-photo-wrap {
@@ -207,50 +246,41 @@ flex-direction: column;
   top: -21.5%;
 
   object-fit: fill;
-}
 
-.dish-card:first-child .dish-photo-wrap .dish-photo {
-  position: absolute;
-
-  width: 140%;
-  height: 143%;
-
-  max-width: none;
-
-  left: -20%;
-  top: -21.5%;
-
-  object-fit: fill;
+  cursor: zoom-in;
 }
 
 .dish-info {
   position: relative;
+
   display: flex;
   flex-direction: column;
 
   min-width: 0;
   min-height: 149px;
+
   margin-top: -2px;
   padding-bottom: 7px;
 }
 
-
 .dish-title {
   margin: 0;
-font-family: "Montserrat", sans-serif;
-font-size: 9px;
-line-height: 9.4px;
-font-weight: 400;
-letter-spacing: -2%;
-}
 
+  font-family: "Montserrat", sans-serif;
+  font-size: 9px;
+  line-height: 9.4px;
+  font-weight: 400;
+
+  letter-spacing: -0.18px;
+}
 
 .dish-description {
   margin: 3px 0 0;
-font-family: "Montserrat", sans-serif;
-font-size: 7px;
-line-height: 10px;
-font-weight: 400;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 7px;
+  line-height: 10px;
+  font-weight: 400;
 }
 
 .dish-price {
@@ -260,21 +290,27 @@ font-weight: 400;
   font-size: 9.674px;
   line-height: 10px;
   font-weight: 500;
+
   letter-spacing: -0.1935px;
-  color: #000;
+
+  color: var(--black);
 }
 
 .dish-weight {
   position: absolute;
+
   left: 0;
   bottom: -1px;
+
   margin: 0;
 
   font-family: "Montserrat", sans-serif;
   font-size: 6.286px;
   line-height: 6.979px;
   font-weight: 400;
-  color: #000;
+
+  color: var(--black);
+
   white-space: nowrap;
 }
 
@@ -286,18 +322,20 @@ font-weight: 400;
   line-height: 10px;
   font-weight: 400;
 
-  color: #000;
+  color: var(--black);
 }
 
 .nutrition {
-  display: grid;
-grid-template-columns: repeat(4, 1fr);
-width: 126px;
-margin-left: -9px;
-margin-top: auto;
-margin-bottom: 7px;
-}
+  width: 126px;
 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  margin-top: auto;
+  margin-right: 0;
+  margin-bottom: 7px;
+  margin-left: -9px;
+}
 
 .nutrition-item {
   display: flex;
@@ -307,7 +345,6 @@ margin-bottom: 7px;
   gap: 3px;
 }
 
-
 .nutrition-label,
 .nutrition-value {
   font-family: "Montserrat", sans-serif;
@@ -316,24 +353,35 @@ margin-bottom: 7px;
   font-weight: 400;
 }
 
-/*.footer {
-  min-height: 549px;
-  background: #000;
-  color: #fff;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}*/
+.allergy-note {
+  margin: 30px 0 20px;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+
+  color: var(--black);
+}
+
+.section-error {
+  margin: 0;
+
+  font-size: 12px;
+}
 
 .footer-inner {
   width: 249px;
+
   padding-top: 307px;
+
   text-align: center;
 }
 
 .footer-title {
   margin: 0;
-  font-family: "Unbounded", sans-serif;
+
+  font-family: "Montserrat", sans-serif;
   font-size: 12px;
   line-height: 18px;
   font-weight: 400;
@@ -341,6 +389,7 @@ margin-bottom: 7px;
 
 .socials {
   margin-top: 19px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -349,27 +398,38 @@ margin-bottom: 7px;
 .socials a {
   width: 35px;
   height: 35px;
-  border: 1px solid rgba(255,255,255,.8);
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
+
   display: grid;
   place-items: center;
-  color: #fff;
+
+  color: var(--white);
+
   text-decoration: none;
-  font-family: "Unbounded", sans-serif;
+
+  font-family: "Montserrat", sans-serif;
   font-size: 7px;
 }
 
 .contact-button {
   width: 163px;
   height: 41px;
+
   margin: 46px auto 0;
+
   border-radius: 100px;
+
   display: grid;
   place-items: center;
+
   background: var(--red);
-  color: #fff;
+  color: var(--white);
+
   text-decoration: none;
-  font-family: "Unbounded", sans-serif;
+
+  font-family: "Montserrat", sans-serif;
   font-size: 12px;
   line-height: 18px;
   font-weight: 700;
@@ -377,33 +437,73 @@ margin-bottom: 7px;
 
 .mobile-menu {
   position: fixed;
+
   inset: 0;
+
   z-index: 4000;
+
   padding: 100px 30px 30px;
-  background: #000;
-  color: #fff;
-  transform: translateX(100%);
-  transition: transform .25s ease;
+
   display: flex;
   flex-direction: column;
+
   gap: 24px;
+
+  background: var(--black);
+  color: var(--white);
+
+  transform: translateX(100%);
+
+  transition: transform 0.25s ease;
 }
 
-.mobile-menu.is-open { transform: translateX(0); }
+.mobile-menu.is-open {
+  transform: translateX(0);
+}
+
 .mobile-menu a {
-  color: #fff;
+  color: var(--white);
+
   text-decoration: none;
+
   font-size: 15px;
-  line-height: 0px;
+  line-height: 1;
 }
 
-.dish-photo {
-  cursor: zoom-in;
+.mobile-menu a[aria-current="page"] {
+  color: #777;
+
+  opacity: 1;
+
+  pointer-events: none;
+}
+
+.mobile-menu-close,
+.image-modal-close {
+  position: absolute;
+
+  right: 22px;
+  top: 20px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: none;
+
+  color: var(--white);
+
+  font-size: 34px;
+  line-height: 1;
+
+  cursor: pointer;
 }
 
 .image-modal {
   position: fixed;
+
   inset: 0;
+
   z-index: 5000;
 
   display: flex;
@@ -416,6 +516,7 @@ margin-bottom: 7px;
 
   opacity: 0;
   visibility: hidden;
+
   pointer-events: none;
 
   transition:
@@ -426,6 +527,7 @@ margin-bottom: 7px;
 .image-modal.is-open {
   opacity: 1;
   visibility: visible;
+
   pointer-events: auto;
 }
 
@@ -441,71 +543,24 @@ margin-bottom: 7px;
 
 .image-modal-photo {
   position: absolute;
-  max-width: none;
 
-  object-fit: fill;
   width: 140%;
   height: 143%;
 
+  max-width: none;
+
   left: -20%;
   top: -21.5%;
-}
 
-.image-modal.is-open .image-modal-photo {
-  transform: scale(1);
-}
-
-.mobile-menu-close,
-.image-modal-close {
-  position: absolute;
-
-  right: 22px;
-  top: 20px;
-
-  border: 0;
-  padding: 0;
-
-  background: none;
-
-  color: #fff;
-
-  font-size: 34px;
-  line-height: 1;
-
-  cursor: pointer;
+  object-fit: fill;
 }
 
 .image-modal-close {
   z-index: 2;
+
   right: 12px;
   top: 160px;
-
 }
-
-.section-error { margin: 0; font-size: 12px; }
-
-.allergy-note {
-  margin: 30px 0 20px;
-
-  font-family: "Montserrat", sans-serif;
-  font-size: 10px;
-  line-height: 12px;
-  font-weight: 400;
-
-  color: #000;
-}
-
-.mobile-menu a[aria-current="page"] {
-  color: #777;
-  opacity: 1;
-  pointer-events: none;
-}
-
-/* ========================================
-   ОБЩИЕ СТИЛИ СТРАНИЦ
-   О НАС / КОНТАКТЫ
-======================================== */
-
 
 .info-page {
   width: 100%;
@@ -513,99 +568,56 @@ margin-bottom: 7px;
 
   padding-top: 75px;
 
-  background: #fff;
+  background: var(--white);
 }
-
-
-/*
-  Не даём SVG логотипа
-  перекрывать элементы ниже header
-*/
 
 .info-page .header {
   overflow: hidden;
 }
 
-
 .info-page .logo-photo {
   pointer-events: none;
 }
-
-
-
-/* ========================================
-   CONTENT
-======================================== */
 
 .info-content {
   width: 100%;
 
   min-height: calc(100vh - 75px);
 
-  padding:
-    40px
-    20px
-    80px;
+  padding: 40px 20px 80px;
 
-  background: #fff;
+  background: var(--white);
 }
-
-
-
-/* ========================================
-   HERO
-======================================== */
 
 .info-hero {
   margin-bottom: 60px;
 }
 
-
 .info-eyebrow {
-  margin:
-    0
-    0
-    7px;
+  margin: 0 0 7px;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
-
+  font-family: "Montserrat", sans-serif;
   font-size: 8px;
-
   line-height: 10px;
-
   font-weight: 400;
 
-  color: #626c3d;
+  color: var(--green);
 
   text-transform: uppercase;
 }
 
-
 .info-title {
   margin: 0;
 
-  font-family:
-    "Unbounded",
-    sans-serif;
-
+  font-family: "Montserrat", sans-serif;
   font-size: 25px;
-
   line-height: 31px;
-
   font-weight: 400;
 
   letter-spacing: -0.7px;
 
-  color: #000;
+  color: var(--black);
 }
-
-
-
-/* ========================================
-   ABOUT
-======================================== */
 
 .about-section {
   max-width: 335px;
@@ -613,269 +625,146 @@ margin-bottom: 7px;
   margin-bottom: 80px;
 }
 
-
 .about-lead {
-  margin:
-    0
-    0
-    32px;
+  margin: 0 0 32px;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
-
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
-
   line-height: 21px;
-
   font-weight: 400;
 
-  color: #000;
+  color: var(--black);
 }
-
 
 .about-text {
-  margin:
-    0
-    0
-    20px;
-
   max-width: 300px;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
+  margin: 0 0 20px;
 
+  font-family: "Montserrat", sans-serif;
   font-size: 11px;
-
   line-height: 16px;
-
   font-weight: 400;
 
-  color: #000;
+  color: var(--black);
 }
-
-
-
-/* ========================================
-   ССЫЛКИ
-======================================== */
 
 .info-link-section {
   width: 100%;
 
-  border-top:
-    1px
-    solid
-    #000;
+  border-top: 1px solid var(--black);
 }
-
 
 .info-large-link {
   width: 100%;
-
   min-height: 50px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
-  border-bottom:
-    1px
-    solid
-    #000;
+  border-bottom: 1px solid var(--black);
 
-  color: #000;
+  color: var(--black);
 
   text-decoration: none;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
-
+  font-family: "Montserrat", sans-serif;
   font-size: 11px;
-
   line-height: 15px;
-
   font-weight: 400;
 }
 
-
 .info-large-link span {
   font-size: 16px;
-
   line-height: 1;
 }
-
-
-
-/* ========================================
-   CONTACTS
-======================================== */
 
 .contacts-list {
   width: 100%;
 
   margin-bottom: 80px;
-
-  border-top:
-    1px
-    solid
-    #000;
 }
-
 
 .contact-item {
-  display: grid;
-
-  grid-template-columns:
-    36%
-    64%;
-
   width: 100%;
 
-  padding:
-    17px
-    0;
+  display: grid;
 
-  border-bottom:
-    1px
-    solid
-    #000;
+  grid-template-columns: 36% 64%;
+
+  padding: 17px 0;
 }
-
 
 .contact-label {
   margin: 0;
 
   padding-right: 10px;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
-
+  font-family: "Montserrat", sans-serif;
   font-size: 8px;
-
   line-height: 12px;
-
   font-weight: 400;
 
   color: #777;
 }
 
-
 .contact-value {
   margin: 0;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
-
+  font-family: "Montserrat", sans-serif;
   font-size: 11px;
-
   line-height: 15px;
-
   font-weight: 400;
 
-  color: #000;
+  color: var(--black);
 }
-
 
 .contact-link {
   text-decoration: none;
 }
 
-
 .social-links {
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-start;
 
   gap: 7px;
 }
 
-
 .social-links a {
-  color: #000;
+  color: var(--black);
 
   text-decoration: none;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
-
+  font-family: "Montserrat", sans-serif;
   font-size: 11px;
-
   line-height: 15px;
-
   font-weight: 400;
 }
 
-
-
-/* ========================================
-   FOOTER
-======================================== */
-
 .info-footer {
   width: 100%;
-
   min-height: 170px;
 
   display: flex;
-
   align-items: flex-end;
 
-  padding:
-    20px;
+  padding: 20px;
 
-  background: #000;
+  background: var(--black);
 }
-
 
 .info-footer-logo {
   margin: 0;
 
-  font-family:
-    "Unbounded",
-    sans-serif;
-
+  font-family: "Unbounded", sans-serif;
   font-size: 12px;
-
   line-height: 18px;
-
   font-weight: 400;
 
-  color: #fff;
+  color: var(--white);
 }
-
-
-
-/* ========================================
-   MOBILE
-======================================== */
-
-@media (max-width: 359px) {
-
-  .info-content {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-
-  .info-title {
-    font-size: 22px;
-
-    line-height: 28px;
-  }
-
-}
-
-/* Страница КБЖУ — отдельные стили поверх основного styles.css */
 
 .nutrition-page {
   padding-top: 75px;
@@ -891,40 +780,54 @@ margin-bottom: 7px;
 
 .nutrition-content {
   width: 100%;
+
   padding: 34px 20px 60px;
-  background: #fff;
+
+  background: var(--white);
 }
 
 .nutrition-page__title {
   margin: 0 0 14px;
+
   font-family: "Montserrat", sans-serif;
   font-size: 11px;
   line-height: 14px;
   font-weight: 600;
-  color: #000;
+
+  color: var(--black);
 }
 
 .nutrition-table {
   width: 100%;
-  color: #000;
+
+  color: var(--black);
 }
 
 .nutrition-table__header,
 .nutrition-table__row {
-  display: grid;
-  grid-template-columns: 43.3% repeat(5, 11.34%);
   width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    43.3%
+    repeat(5, 11.34%);
 }
 
 .nutrition-table__header {
   min-height: 12px;
+
   align-items: center;
+
   background: rgb(148 158 107 / 55%);
-  border-bottom: 1px solid #000;
+
+  border-bottom: 1px solid var(--black);
+
   font-family: "Montserrat", sans-serif;
   font-size: 6.3px;
   line-height: 7px;
   font-weight: 400;
+
   text-align: center;
 }
 
@@ -932,7 +835,9 @@ margin-bottom: 7px;
 .nutrition-table__row > div {
   min-width: 0;
   height: 100%;
+
   padding: 3px 2px;
+
   border-right: 1px solid rgba(0, 0, 0, 0.32);
 }
 
@@ -947,13 +852,17 @@ margin-bottom: 7px;
 
 .nutrition-section__title {
   margin: 0;
+
   padding: 7px 0 4px;
-  border-bottom: 1px solid #000;
+
+  border-bottom: 1px solid var(--black);
+
   font-family: "Montserrat", sans-serif;
   font-size: 6.3px;
   line-height: 7px;
   font-weight: 700;
-  color: #000;
+
+  color: var(--black);
 }
 
 .nutrition-section__title:empty {
@@ -966,12 +875,16 @@ margin-bottom: 7px;
 
 .nutrition-table__row {
   min-height: 14px;
+
   align-items: stretch;
+
   border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+
   font-family: "Montserrat", sans-serif;
   font-size: 6.3px;
   line-height: 7.2px;
   font-weight: 400;
+
   text-align: center;
 }
 
@@ -983,12 +896,23 @@ margin-bottom: 7px;
 
 .nutrition-table__row .nutrition-table__name {
   justify-content: flex-start;
+
   text-align: left;
+
   overflow-wrap: anywhere;
 }
 
-
 @media (max-width: 359px) {
+  .info-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .info-title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
   .nutrition-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -996,7 +920,9 @@ margin-bottom: 7px;
 
   .nutrition-table__header,
   .nutrition-table__row {
-    grid-template-columns: 41% repeat(5, 11.8%);
+    grid-template-columns:
+      41%
+      repeat(5, 11.8%);
   }
 
   .nutrition-table__row,
