@@ -393,3 +393,93 @@ document.addEventListener(
 loadMenuSection(
   "breakfast"
 );
+
+const nutritionSearch =
+  document.querySelector("#nutrition-search");
+
+const nutritionSearchEmpty =
+  document.querySelector("#nutrition-search-empty");
+
+
+function normalizeSearchText(text) {
+  return text
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .trim();
+}
+
+
+function filterNutritionTable() {
+  if (!nutritionSearch) return;
+
+  const query =
+    normalizeSearchText(nutritionSearch.value);
+
+  const sections =
+    document.querySelectorAll(".nutrition-section");
+
+  let visibleRows = 0;
+
+
+  sections.forEach(function (section) {
+
+    const rows =
+      section.querySelectorAll(".nutrition-table__row");
+
+    let visibleInSection = 0;
+
+
+    rows.forEach(function (row) {
+
+      const name =
+        row.querySelector(".nutrition-table__name");
+
+      if (!name) return;
+
+
+      const dishName =
+        normalizeSearchText(name.textContent);
+
+
+      const matches =
+        query === "" ||
+        dishName.includes(query);
+
+
+      row.hidden = !matches;
+
+
+      if (matches) {
+        visibleInSection++;
+        visibleRows++;
+      }
+
+    });
+
+
+    section.hidden =
+      query !== "" &&
+      visibleInSection === 0;
+
+  });
+
+
+  if (nutritionSearchEmpty) {
+
+    nutritionSearchEmpty.hidden =
+      query === "" ||
+      visibleRows > 0;
+
+  }
+
+}
+
+
+if (nutritionSearch) {
+
+  nutritionSearch.addEventListener(
+    "input",
+    filterNutritionTable
+  );
+
+}
