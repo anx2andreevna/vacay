@@ -105,11 +105,13 @@ async function loadMenuSection(section) {
 
 
   if (menuTime) {
-    menuTime.textContent =
-      section === "breakfast"
-        ? "до 14:00"
-        : "с 14:00";
-  }
+  menuTime.style.display = section === "deserts" ? "none" : "";
+
+  menuTime.textContent =
+    section === "breakfast"
+      ? "до 14:00"
+      : "с 14:00";
+}
 
 
   try {
